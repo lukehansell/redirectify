@@ -41,7 +41,7 @@ Also withing your `package.json` you should provide the `overrideDir` as config 
     {
       "browserify": ...
       "redirectify": {
-        "overrideDir": "dir/to/nest/to"
+        "dir": "dir/to/nest/to"
       }
     }
 
@@ -54,7 +54,7 @@ For example for the above directory structure your `package.json` should look li
         transform: ["redirectify"]
       },
       "redirectify": {
-        "overrideDir": "overridingDir"
+        "dir": "overridingDir"
       }
     }
     
