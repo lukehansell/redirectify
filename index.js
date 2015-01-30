@@ -1,1 +1,1 @@
-module.exports = require('./lib/overridify');
+module.exports = require('./lib/redirectify');

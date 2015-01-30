@@ -1,4 +1,4 @@
-# Overridify
+# Redirectify
 
 A transformer for [Browserify](http://browserify.org) which overrides the required file when a specified subdirectory with a file of the same name exists.
 
@@ -9,12 +9,12 @@ Works in combination with other transformers such as [hbsfy](https://github.com/
 Using npm:
 
 ```
-npm install overridify browserify
+npm install redirectify browserify
 ```
 
 ## Usage
 
-Overridify requires a specific directory structure when overriding:
+Redirectify requires a specific directory structure when overriding:
 
     .
     +-- file
@@ -24,23 +24,23 @@ Overridify requires a specific directory structure when overriding:
 The file to be overridden and the overriding file must have the same name.
 If a matching directory or file is not found then the original is used.
 
-### With Browseify
+### Config With Browserify
 
-When executing browserify you can specify overridify as a transformer in your `package.json`:
+When executing browserify you can specify redirectify as a transformer in your `package.json`:
 
     {
       "name": "foo",
       ...
       "browserify": {
-        "transform: ["overridify"]
+        "transform: ["redirectify"]
       }
     }
 
-Also withing your `package.json` you should provide the `overrideDir` as config for overridify:
+Also withing your `package.json` you should provide the `overrideDir` as config for redirectify:
 
     {
       "browserify": ...
-      "overridify": {
+      "redirectify": {
         "overrideDir": "dir/to/nest/to"
       }
     }
@@ -51,9 +51,9 @@ For example for the above directory structure your `package.json` should look li
       "name": "foo",
       ...
       "browserify": {
-        transform: ["overridify"]
+        transform: ["redirectify"]
       },
-      "overridify": {
+      "redirectify": {
         "overrideDir": "overridingDir"
       }
     }

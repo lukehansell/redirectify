@@ -5,9 +5,9 @@ var sinon = require('sinon');
 
 var transformTools = require('browserify-transform-tools');
 
-var overridify = require('../lib/overridify');
+var redirectify = require('../lib/redirectify');
 
-describe('overridify', function(){
+describe('redirectify', function(){
   var callback, file;
   
   before(function(){
@@ -26,18 +26,18 @@ describe('overridify', function(){
   
     beforeEach(function(){
       var config = { dir: 'sub1' };
-      overridify.setConfig(config);
+      redirectify.setConfig(config);
     });
     
     it('returns sub folder file content', function(done){
-      transformTools.runTransform(overridify, file, {}, function(err, transformed){
+      transformTools.runTransform(redirectify, file, {}, function(err, transformed){
         assert.equal('sub test', transformed);
         done();
       });
     });
     
     it('does not error', function(done){
-      transformTools.runTransform(overridify, file, {}, function(err){
+      transformTools.runTransform(redirectify, file, {}, function(err){
         assert.ok(!err);
         done();
       });
@@ -47,18 +47,18 @@ describe('overridify', function(){
   describe('without existing file in subfolder', function(){
     beforeEach(function(){
       var config = { dir: 'sub2' };
-      overridify.setConfig(config);
+      redirectify.setConfig(config);
     });
 
     it('returns the original files content', function(done){
-      transformTools.runTransform(overridify, file, {}, function(err, transformed){
+      transformTools.runTransform(redirectify, file, {}, function(err, transformed){
         assert.equal('test', transformed);
         done();
       });
     });
 
     it('does not error', function(done){
-      transformTools.runTransform(overridify, file, {}, function(err){
+      transformTools.runTransform(redirectify, file, {}, function(err){
         assert.ok(!err);
         done();
       });
@@ -69,18 +69,18 @@ describe('overridify', function(){
   describe('without existing sub folder', function(){
     beforeEach(function(){
       var config = { dir: 'sub3' };
-      overridify.setConfig(config);
+      redirectify.setConfig(config);
     });
 
     it('returns the original files content', function(done){
-      transformTools.runTransform(overridify, file, {}, function(err, transformed){
+      transformTools.runTransform(redirectify, file, {}, function(err, transformed){
         assert.equal('test', transformed);
         done();
       });
     });
 
     it('does not error', function(done){
-      transformTools.runTransform(overridify, file, {}, function(err, transformed){
+      transformTools.runTransform(redirectify, file, {}, function(err, transformed){
         assert.ok(!err);
         done();
       });
