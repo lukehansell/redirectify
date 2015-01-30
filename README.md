@@ -24,7 +24,9 @@ Redirectify requires a specific directory structure when overriding:
 The file to be overridden and the overriding file must have the same name.
 If a matching directory or file is not found then the original is used.
 
-### Config With Browserify
+### Config
+
+#### With Browserify and Package.json
 
 When executing browserify you can specify redirectify as a transformer in your `package.json`:
 
@@ -58,10 +60,18 @@ For example for the above directory structure your `package.json` should look li
       }
     }
     
-For this example Browserify will now include `./overrideDir/file` instead of `./file`.
+For this example Browserify will now include `./overridingDir/file` instead of `./file`.
 
 If the specified directory or override file with the same name do not exist then the original
 will acts as a default.
+
+#### With ENV variable on CLI
+
+You can also overwrite the config by using an environment variable:
+
+```
+REDIRECT_DIR=overridingDir browserify input.js -t redirectify  -o output.js
+```
 
 ## Tests
 
