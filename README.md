@@ -26,7 +26,7 @@ If a matching directory or file is not found then the original is used.
 
 ### Config
 
-#### With Browserify and Package.json
+#### With Package.json
 
 When executing browserify you can specify redirectify as a transformer in your `package.json`:
 
@@ -65,7 +65,15 @@ For this example Browserify will now include `./overridingDir/file` instead of `
 If the specified directory or override file with the same name do not exist then the original
 will acts as a default.
 
-#### With ENV variable on CLI
+
+
+#### On the command line
+
+Alternatively you can specify the transform option on the command line:
+
+```
+browserify input.js -t [ redirectify --dir overridingDir ] -o output.js
+```
 
 You can also overwrite the config by using an environment variable:
 
