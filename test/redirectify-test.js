@@ -8,6 +8,7 @@ var redirectify = require('../lib/redirectify');
 
 describe('redirectify', function(){
   var file;
+  var deepfile;
   
   before(function(){
     file = path.resolve(__dirname, "fixtures/files/test.txt");
@@ -87,6 +88,28 @@ describe('redirectify', function(){
         });
       });
     });
+
+      describe('with base dir', function(){
+          beforeEach(function(){
+              deepfile = path.resolve(__dirname, "fixtures/files/sub1/deepsub/test.txt");
+              var config = { dir: '../sub2', base: path.resolve(__dirname, "fixtures/files/sub1") };
+              redirectify.setConfig(config);
+          });
+
+          it('returns deep sub folder file content', function(done){
+              transformTools.runTransform(redirectify, deepfile, {}, function(err, transformed){
+                  assert.equal('base test', transformed);
+                  done();
+              });
+          });
+
+          it('does not error', function(done){
+              transformTools.runTransform(redirectify, deepfile, {}, function(err, transformed){
+                  assert.ok(!err);
+                  done();
+              });
+          });
+      });
   });
   
   describe('from environment variable', function(){
