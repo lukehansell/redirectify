@@ -1,7 +1,7 @@
 {
   "name": "redirectify",
-  "version": "1.2.0",
-  "description": "A require() plugin for Browserify for overriding required file based on directory.",
+  "version": "1.3.0",
+  "description": "A require() plugin for Browserify for overriding a required file based on directory.",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/*"
@@ -21,7 +21,7 @@
   "author": "Luke Hansell <luke.hansell@holidayextras.com>",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "browserify-transform-tools": "^1.3.0"
+    "browserify-transform-tools": "^1.4.0"
   },
   "devDependencies": {
     "mocha": "~2.1.0",
