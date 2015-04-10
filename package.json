@@ -15,8 +15,8 @@
     "browserify-transform"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/lukehansell-hx/redirectify.git"
+    "type": "git",
+    "url": "https://github.com/lukehansell-hx/redirectify.git"
   },
   "author": "Luke Hansell <luke.hansell@holidayextras.com>",
   "license": "BSD-2-Clause",
@@ -24,7 +24,7 @@
     "browserify-transform-tools": "^1.3.0"
   },
   "devDependencies": {
-    "mocha": "~2.1.0",
-    "assert": "~1.3.0"
+    "assert": "~1.3.0",
+    "mocha": "~2.1.0"
   }
 }

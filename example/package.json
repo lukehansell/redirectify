@@ -1,0 +1,15 @@
+{
+  "name": "redirectify-example",
+  "version": "1.0.0",
+  "description": "Redirectify Example",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luke Hansell <luke.hansell@holidayextras.com> (https://twitter.com/luke_hansell)",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^9.0.8",
+    "redirectify": "^1.3.0"
+  }
+}

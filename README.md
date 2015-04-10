@@ -1,8 +1,6 @@
 # Redirectify
 
-A transformer for [Browserify](http://browserify.org) which overrides the required file with the contents of a file of the same name in a specified directory (if such a file exists).
-
-Works in combination with other transformers such as [hbsfy](https://github.com/epeli/node-hbsfy).
+A transformer for [Browserify](http://browserify.org) to override the returned file from require().
 
 ## Installation
 
@@ -14,27 +12,30 @@ npm install redirectify browserify --save
 
 ## Usage
 
-In it's simplest form Redirectify requires a specific directory structure when overriding:
+Browserify bundles together files referenced using the `require()` function.
+When a call to `require()` is made Redirectify will step in and return a file matching a specified format where available.
+If the file to override with does not exist then the deault is used instead.
 
-    .
-    ├ file.txt
-    ├ overridingDir
-    │ └ file.txt
+Redirectify can redirect the require call based on a file prefix, suffix or directory.
+For examples of these in action see the examples in this repo.
 
-When the top level `file.txt` is required by Browserify `overridingDir/file.txt` is loaded instead.
-Using the `base` option you can specify entire directories to override. 
-If no override is found then the original is used.
-
-*The file to be overridden and the overriding file must have the same name.*
-
-*If a matching directory or file is not found then the original is used.*
 
 ### Options
+* `prefix` - text to prepend to the filename 
+    #### Example
+    with "foo" a call to "bar.js" becomes "foobar.js"
 
-`dir`  - relative path to the directory containing the overriding file
+* `suffix` - text to append to the filename 
+    #### Example
+    with "foo" a call to "bar.js" becomes "barfoo.js"
 
-`base` - [optional] used for specifying the common root for overriding sub directories
+* `dir`  - relative path to the directory containing the overriding file
+    #### Example
+    with "foo" a call to "bar.js" becomes "foo/bar.js"
 
+* `base` - [optional] used for specifying the common root for overriding sub directories
+    #### Example
+    with base="foo" and dir="../baz" a call to "foo/other/bar.js" becomes "baz/other/bar.js"
 
 ### Config
 
@@ -84,19 +85,16 @@ will acts as a default.
 Alternatively you can specify the transform option on the command line:
 
 ```
-browserify input.js -t [ redirectify --dir overridingDir ] -o output.js
+browserify input.js -t [ redirectify --dir="overridingDir" ] -o output.js
 ```
 
 You can also overwrite the config by using an environment variable:
-
+**This will be deprecated in a future release**
 ```
 REDIRECT_DIR=overridingDir browserify input.js -t redirectify  -o output.js
 ```
 
 #### Overriding deeply nested files
-
-If you require the overriding of deeply nested files you can use the `base` option to specify where the redirection
-should begin.
 
 For instance, with the following directory structure:
 
@@ -139,6 +137,9 @@ npm test
 ```
 
 ## Change history
+# 1.4
+- Adding support for prefix and suffix redirection.
+
 # 1.3
 - Adds support for overriding contents of subdirectories.
 

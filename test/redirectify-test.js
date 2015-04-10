@@ -4,7 +4,7 @@ var assert = require('assert');
 
 var transformTools = require('browserify-transform-tools');
 
-var redirectify = require('../lib/redirectify');
+var redirectify = require('../');
 
 describe('redirectify', function(){
   var file;
