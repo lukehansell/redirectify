@@ -1,6 +1,6 @@
 {
   "name": "redirectify",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A require() plugin for Browserify for overriding a required file based on directory.",
   "main": "index.js",
   "scripts": {

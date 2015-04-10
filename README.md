@@ -2,6 +2,15 @@
 
 A transformer for [Browserify](http://browserify.org) to override the returned file from require().
 
+---
+
+Browserify bundles together files referenced using the `require()` function.
+When a call to `require()` is made Redirectify will step in and return a file matching a specified format where available.
+If the file to override with does not exist then the deault is used instead.
+
+Redirectify can redirect the require call based on a file prefix, suffix or directory.
+For examples of these in action see the examples in this repo.
+
 ## Installation
 
 Using npm:
@@ -12,30 +21,32 @@ npm install redirectify browserify --save
 
 ## Usage
 
-Browserify bundles together files referenced using the `require()` function.
-When a call to `require()` is made Redirectify will step in and return a file matching a specified format where available.
-If the file to override with does not exist then the deault is used instead.
-
-Redirectify can redirect the require call based on a file prefix, suffix or directory.
-For examples of these in action see the examples in this repo.
-
+`browserify -t [ redirectify <options> ] source.js -o output.js`
 
 ### Options
 * `prefix` - text to prepend to the filename 
     #### Example
-    with "foo" a call to "bar.js" becomes "foobar.js"
+    `browserify -t [ redirectify --prefix="foo" ] source.js -o output.js`
+
+    `require("./bar.js");` will be return content of "./foobar.js" where available
 
 * `suffix` - text to append to the filename 
     #### Example
-    with "foo" a call to "bar.js" becomes "barfoo.js"
+    `browserify -t [ redirectify --suffix="foo" ] source.js -o output.js`
+    
+    `require("./bar.js");` will be return content of "./barfoo.js" where available
 
 * `dir`  - relative path to the directory containing the overriding file
     #### Example
-    with "foo" a call to "bar.js" becomes "foo/bar.js"
+    `browserify -t [ redirectify --dir="foo" ] source.js -o output.js`
+    
+    `require("./bar.js");` will be return content of "./foo/bar.js" where available
 
-* `base` - [optional] used for specifying the common root for overriding sub directories
+* `base` - used for specifying the common root for overriding sub directories
     #### Example
-    with base="foo" and dir="../baz" a call to "foo/other/bar.js" becomes "baz/other/bar.js"
+    `browserify -t [ redirectify --base="foo" --dir="../baz" ] source.js -o output.js`
+
+    `require("./foo/bar.js");` will be return content of "./baz/other/bar.js" where available
 
 ### Config
 
@@ -89,7 +100,9 @@ browserify input.js -t [ redirectify --dir="overridingDir" ] -o output.js
 ```
 
 You can also overwrite the config by using an environment variable:
+
 **This will be deprecated in a future release**
+
 ```
 REDIRECT_DIR=overridingDir browserify input.js -t redirectify  -o output.js
 ```
